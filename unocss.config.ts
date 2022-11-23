@@ -15,13 +15,13 @@ export default defineConfig({
   ],
   theme: {
     fontFamily: {
-      sans: '',
+      sans: 'Changa',
     },
     boxShadow: {
-      nav: '0 1px 8px 0 rgba(27, 35, 47, .1)',
+      nav_item: '0px 0px 4px #eee inset',
     },
     colors: {
-      primary: '#BBB529',
+      primary: '#507C59',
     },
   },
   presets: [
