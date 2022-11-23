@@ -10,6 +10,8 @@ import {
 export default defineConfig({
   shortcuts: [
     ['flex-center', 'flex items-center justify-center'],
+    ['hstack', 'flex items-center'],
+    ['vstack', 'flex flex-col justify-center'],
   ],
   theme: {
     fontFamily: {
@@ -19,10 +21,7 @@ export default defineConfig({
       nav: '0 1px 8px 0 rgba(27, 35, 47, .1)',
     },
     colors: {
-      brand: '#1772d0',
-    },
-    maxWidth: {
-      content: '85ch',
+      primary: '#BBB529',
     },
   },
   presets: [
