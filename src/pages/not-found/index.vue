@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  BaseLayout
+  NotFound
 </template>

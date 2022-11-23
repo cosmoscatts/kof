@@ -21,9 +21,4 @@ export function useLoading(initValue = false) {
     toggleLoading,
   }
 }
-/**
- * 使用 naive-ui 通用 api
- */
-export function useNaiveApi() {
 
-}

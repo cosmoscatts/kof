@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  HomePage
+  Home
 </template>
