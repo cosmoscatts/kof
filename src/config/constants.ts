@@ -1,5 +1,3 @@
-export const JWT_TOKEN_KEY = 'jwt_token'
-
 export const PROJECT_INFO = {
   shortName: 'KOF',
   fullName: 'KING OF FIGHTERS',
