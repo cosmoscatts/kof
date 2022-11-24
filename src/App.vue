@@ -43,7 +43,6 @@ onMounted(setPosition)
     >
       <div
         v-if="width >= 1180" id="main"
-        w830px h500px relative z-100
         :style="{
           transform: `scale(${ui.scale}) translateZ(1px)`,
         }"
@@ -101,6 +100,9 @@ onMounted(setPosition)
 }
 
 #main {
+  position: relative;
+  width: 830px;
+  height: 500px;
   background-image: url('~/assets/images/background/0.gif');
   background-size: 200% 100%;
   background-position: top;
