@@ -5,8 +5,9 @@ const { width, height } = useElementSize(refContainer)
 const ui = reactive({
   scale: 1,
 })
+const DEFAULT_WIDTH = 830
 const DEFAULT_HEIGHT = 500
-const setPosition = () => ui.scale = (height.value - 60) / DEFAULT_HEIGHT
+const setPosition = () => ui.scale = Math.min((width.value - 60) / DEFAULT_WIDTH, (height.value - 60) / DEFAULT_HEIGHT)
 
 window.onresize = setPosition
 watch(height, setPosition)

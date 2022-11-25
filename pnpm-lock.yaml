@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@antfu/eslint-config': ^0.31.0
-  '@iconify/json': ^2.1.142
+  '@iconify/json': ^2.1.143
   '@types/fs-extra': ^9.0.13
   '@vitejs/plugin-vue': ^3.2.0
   '@vueuse/core': ^9.6.0
@@ -32,7 +32,7 @@ dependencies:
 
 devDependencies:
   '@antfu/eslint-config': registry.npmmirror.com/@antfu/eslint-config/0.31.0_hsf322ms6xhhd4b5ne6lb74y4a
-  '@iconify/json': registry.npmmirror.com/@iconify/json/2.1.142
+  '@iconify/json': registry.npmmirror.com/@iconify/json/2.1.143
   '@types/fs-extra': registry.npmmirror.com/@types/fs-extra/9.0.13
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.2.0_vite@3.2.4+vue@3.2.45
   eslint: registry.npmmirror.com/eslint/8.28.0
@@ -296,10 +296,10 @@ packages:
     version: 1.2.1
     dev: true
 
-  registry.npmmirror.com/@iconify/json/2.1.142:
-    resolution: {integrity: sha512-wTVti6wSp5ofWk7g7vWF+WDmC9ymI4PoNAGHQ0p4cGpNd04bMSS1DB+ptU8n6OqBg2T03kKEqRvG9PqjUiZSGA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/json/-/json-2.1.142.tgz}
+  registry.npmmirror.com/@iconify/json/2.1.143:
+    resolution: {integrity: sha512-atN7UAsuRgXkXE9MiOh59T2hIkN3ulE6GVbfZjKeYPYdyRpsAgFsLOAMjJ+u6jIzaiZn+rSVwx7m2gQG47sN0A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/json/-/json-2.1.143.tgz}
     name: '@iconify/json'
-    version: 2.1.142
+    version: 2.1.143
     dependencies:
       '@iconify/types': registry.npmmirror.com/@iconify/types/2.0.0
       pathe: registry.npmmirror.com/pathe/0.3.9
