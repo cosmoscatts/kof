@@ -48,7 +48,11 @@ onMounted(setPosition)
           transform: `scale(${ui.scale}) translateZ(1px)`,
         }"
       >
-        <RouterView />
+        <RouterView v-slot="{ Component, route }">
+          <Transition name="fade-slide" mode="out-in" appear>
+            <component :is="Component" :key="route.path" />
+          </Transition>
+        </RouterView>
       </div>
       <div
         v-else
