@@ -33,8 +33,6 @@ export class BasePlayer extends GameObject {
   frameCurrentCnt: number
 
   hp: number
-  // $hp: number
-  // $hp_div: HTMLElement
 
   constructor(root: KOF, { id, x, y, width, height, color }: PlayerInfo) {
     super()
@@ -66,8 +64,6 @@ export class BasePlayer extends GameObject {
     this.frameCurrentCnt = 0
 
     this.hp = 100
-    // this.$hp = this.root.$kof.find(`.kof-head-hp-${this.id}>div`)
-    // this.$hp_div = this.$hp.find('div')
   }
 
   start() {

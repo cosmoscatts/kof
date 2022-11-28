@@ -12,6 +12,9 @@ const setPosition = () => ui.scale = Math.min((width.value - 60) / DEFAULT_WIDTH
 window.onresize = setPosition
 watch(height, setPosition)
 onMounted(setPosition)
+
+const route = useRoute()
+const showReturnBtn = computed(() => ['/game', '/pick'].includes(route.path))
 </script>
 
 <template>
@@ -24,6 +27,13 @@ onMounted(setPosition)
       :style="{ left: 'calc(50% - 200px)' }"
     >
       KING OF FIGHTERS - 拳皇
+    </div>
+    <div
+      v-if="showReturnBtn && width >= 1180"
+      absolute right="[250px]" top-10px
+      class="btn" @click="$router.push('/home')"
+    >
+      返回
     </div>
     <div
       absolute right="[180px]" top-10px
@@ -113,5 +123,25 @@ onMounted(setPosition)
   background-position: top;
   box-sizing: border-box;
   z-index: 10;
+}
+
+.btn {
+  width: 60px;
+  height: 40px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid #906B40;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &:hover {
+    background-color: #B17326;
+    border-color: #B17326;
+  }
 }
 </style>

@@ -1,3 +1,4 @@
 import { Kyo } from './kyo'
+import { Mai } from './Mai'
 
-export { Kyo }
+export { Kyo, Mai }
