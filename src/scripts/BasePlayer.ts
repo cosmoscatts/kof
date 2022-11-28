@@ -201,28 +201,24 @@ export class BasePlayer extends GameObject {
     this.status = 5
     this.frameCurrentCnt = 0
 
-    this.hp = Math.max(this.hp - 10, 0)
-
-    // this.$hp_div.animate({
-    //   width: this.$hp.parent().width() * this.hp / 100,
-    // }, 300)
-
-    // this.$hp.animate({
-    //   width: this.$hp.parent().width() * this.hp / 100,
-    // }, 600)
+    const attackHp = ~~(Math.random() * 20)
+    this.hp = Math.max(this.hp - attackHp, 0)
+    const { updatePlayer, updateHasStarted } = useGameStore()
+    updatePlayer({ id: this.id, hp: this.hp })
 
     if (this.hp <= 0) {
       this.status = 6
       this.frameCurrentCnt = 0
       this.vx = 0
+      updateHasStarted(false)
     }
   }
 
   /**
    * 两个矩形是否碰撞
    */
-  isCollision(r1: { x1: number;x2: number;y1: number; y2: number },
-    r2: { x1: number;x2: number;y1: number; y2: number }) {
+  isCollision(r1: { x1: number; x2: number; y1: number; y2: number },
+    r2: { x1: number; x2: number; y1: number; y2: number }) {
     if (Math.max(r1.x1, r2.x1) > Math.min(r1.x2, r2.x2))
       return false
     if (Math.max(r1.y1, r2.y1) > Math.min(r1.y2, r2.y2))

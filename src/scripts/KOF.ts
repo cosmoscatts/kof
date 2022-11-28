@@ -17,7 +17,7 @@ export class KOF {
         this,
         {
           id: 0,
-          x: 200,
+          x: 80,
           y: 0,
           width: 120,
           height: 200,
@@ -28,7 +28,7 @@ export class KOF {
         this,
         {
           id: 1,
-          x: 900,
+          x: 630,
           y: 0,
           width: 120,
           height: 200,

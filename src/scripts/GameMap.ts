@@ -24,7 +24,7 @@ export class GameMap extends GameObject {
 
   }
 
-  update() {
+  updateTime(fn: Function) {
     this.timeLeft -= this.timeDelta
     if (this.timeLeft < 0) {
       this.timeLeft = 0
@@ -37,8 +37,13 @@ export class GameMap extends GameObject {
       }
     }
 
-    const { updateTimer } = useGameStore()
-    updateTimer(~~(this.timeLeft / 1000))
+    fn(~~(this.timeLeft / 1000))
+  }
+
+  update() {
+    const gameStore = useGameStore()
+    if (gameStore.hasStarted)
+      this.updateTime(gameStore.updateTimer)
     this.render()
   }
 

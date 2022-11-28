@@ -3,6 +3,16 @@ import { KOF } from '~/scripts/KOF'
 
 const gameStore = useGameStore()
 onMounted(() => new KOF('kof', gameStore))
+
+const hpWidthStyle = computed(() => {
+  const { playerA, playerB } = gameStore
+  if (!playerA || !playerB)
+    return ['100%', '100%']
+  return [
+    `${playerA.hp}%`,
+    `${playerB.hp}%`,
+  ]
+})
 </script>
 
 <template>
@@ -10,13 +20,17 @@ onMounted(() => new KOF('kof', gameStore))
     <canvas id="kof-canvas" width="830" height="500" tabindex="0" />
     <div class="kof-head">
       <div class="kof-head-hp-0">
-        <div><div /></div>
+        <div>
+          <div />
+        </div>
       </div>
       <div class="kof-head-timer">
         {{ gameStore.timer }}
       </div>
       <div class="kof-head-hp-1">
-        <div><div /></div>
+        <div>
+          <div />
+        </div>
       </div>
     </div>
   </div>
@@ -66,26 +80,31 @@ onMounted(() => new KOF('kof', gameStore))
 #kof>.kof-head>.kof-head-hp-0>div {
   background-color: red;
   height: 100%;
-  width: 100%;
+  width: v-bind('hpWidthStyle[0]');
   float: right;
+  transition: all .6s;
+  position: relative;
 }
 
 #kof>.kof-head>.kof-head-hp-1>div {
   background-color: red;
   height: 100%;
-  width: 100%;
+  width: v-bind('hpWidthStyle[1]');
+  transition: all .6s;
 }
 
 #kof>.kof-head>.kof-head-hp-0>div>div {
   background-color: lightgreen;
   height: 100%;
-  width: 100%;
+  width: v-bind('hpWidthStyle[0]');
   float: right;
+  transition: all .3s;
 }
 
 #kof>.kof-head>.kof-head-hp-1>div>div {
   background-color: lightgreen;
   height: 100%;
-  width: 100%;
+  width: v-bind('hpWidthStyle[1]');
+  transition: all .3s;
 }
 </style>

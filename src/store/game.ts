@@ -1,20 +1,22 @@
 interface PlayerStats {
   id: number
   hp: number
-  attack: number // 收到的攻击值
 }
 
-const DEFAULT_PLAYER_STATS: Omit<PlayerStats, 'id'> = { hp: 100, attack: 0 }
+const DEFAULT_PLAYER_STATS: Omit<PlayerStats, 'id'> = { hp: 100 }
 
 export const useGameStore = defineStore(
   'gameStore',
   () => {
     const timer = ref(60)
+    const hasStarted = ref(false)
     const playerA = ref<PlayerStats>()
     const playerB = ref<PlayerStats>()
     const updateTimer = (_timer: number) => timer.value = _timer
+    const updateHasStarted = (state: boolean) => hasStarted.value = state
     function initGame(idA: number, idB: number) {
       updateTimer(60)
+      useTimeoutFn(() => updateHasStarted(true), 1000)
       playerA.value = { ...DEFAULT_PLAYER_STATS, id: idA }
       playerB.value = { ...DEFAULT_PLAYER_STATS, id: idB }
     }
@@ -26,10 +28,12 @@ export const useGameStore = defineStore(
     }
     return {
       timer,
+      hasStarted,
       playerA,
       playerB,
       initGame,
       updateTimer,
+      updateHasStarted,
       updatePlayer,
     }
   },
