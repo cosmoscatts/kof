@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { KOF } from '~/scripts/KOF'
 
-onMounted(() => new KOF('kof'))
+const gameStore = useGameStore()
+onMounted(() => new KOF('kof', gameStore))
 </script>
 
 <template>
@@ -12,7 +13,7 @@ onMounted(() => new KOF('kof'))
         <div><div /></div>
       </div>
       <div class="kof-head-timer">
-        60
+        {{ gameStore.timer }}
       </div>
       <div class="kof-head-hp-1">
         <div><div /></div>

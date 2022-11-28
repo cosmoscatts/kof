@@ -8,7 +8,6 @@ export class GameMap extends GameObject {
   controller: Controller
   ctx: CanvasRenderingContext2D
   timeLeft: number
-  $timer: Element
 
   constructor(root: KOF, $canvas: HTMLCanvasElement) {
     super()
@@ -19,7 +18,6 @@ export class GameMap extends GameObject {
     this.$canvas.focus()
     this.controller = new Controller(this.$canvas)
     this.timeLeft = 60000 // ms
-    this.$timer = document.getElementsByClassName('kof-head-timer')[0]
   }
 
   start() {
@@ -39,7 +37,8 @@ export class GameMap extends GameObject {
       }
     }
 
-    this.$timer.innerHTML = `${~~(this.timeLeft / 1000)}`
+    const { updateTimer } = useGameStore()
+    updateTimer(~~(this.timeLeft / 1000))
     this.render()
   }
 

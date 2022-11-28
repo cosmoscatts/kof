@@ -1,11 +1,11 @@
 /*
   草薙京角色
  */
-import { AbstractPlayer } from '../AbstractPlayer'
+import { BasePlayer } from '../BasePlayer'
 import type { KOF } from '../KOF'
 import type { PlayerInfo } from '~/types'
 
-export class Kyo extends AbstractPlayer {
+export class Kyo extends BasePlayer {
   constructor(root: KOF, info: PlayerInfo) {
     super(root, info)
 

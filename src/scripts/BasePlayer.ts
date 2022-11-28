@@ -5,7 +5,7 @@ import { GameObject } from './GameObject'
 import type { KOF } from './KOF'
 import type { PlayerAnimation, PlayerInfo } from '~/types'
 
-export class AbstractPlayer extends GameObject {
+export class BasePlayer extends GameObject {
   root: KOF
   id: number
   x: number

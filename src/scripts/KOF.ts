@@ -1,13 +1,14 @@
+import type { Store } from 'pinia'
 import { GameMap } from './GameMap'
-import type { AbstractPlayer } from './AbstractPlayer'
+import type { BasePlayer } from './BasePlayer'
 import { Kyo } from './players/kyo'
 
 export class KOF {
   $kof: HTMLElement | null
   gameMap: GameMap
-  players: AbstractPlayer[]
+  players: BasePlayer[]
 
-  constructor(id: string) {
+  constructor(id: string, gameStore: Store<'gameStore', any>) {
     this.$kof = document.getElementById(id)
     this.gameMap = new GameMap(this, document.getElementById('kof-canvas') as HTMLCanvasElement)
 
@@ -35,5 +36,6 @@ export class KOF {
         },
       ),
     ]
+    gameStore.initGame(0, 1)
   }
 }
