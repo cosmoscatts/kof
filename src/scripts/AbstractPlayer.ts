@@ -3,7 +3,7 @@
 */
 import { GameObject } from './GameObject'
 import type { KOF } from './KOF'
-import type { PlayerInfo } from '~/types'
+import type { PlayerAnimation, PlayerInfo } from '~/types'
 
 export class AbstractPlayer extends GameObject {
   root: KOF
@@ -24,17 +24,17 @@ export class AbstractPlayer extends GameObject {
 
   gravity: number // 重力
 
-  ctx: HTMLCanvasElement
+  ctx: CanvasRenderingContext2D
   pressedKeys: Set<string>
 
   status: number // 0: idle; 1: 向前; 2: 向后; 3: 跳跃; 4: 攻击; 5: 被打; 6: 死亡;
-  animations: Map
+  animations: Map<number, PlayerAnimation>
 
   frameCurrentCnt: number
 
   hp: number
-  $hp: number
-  $hp_div: HTMLElement
+  // $hp: number
+  // $hp_div: HTMLElement
 
   constructor(root: KOF, { id, x, y, width, height, color }: PlayerInfo) {
     super()
@@ -66,8 +66,8 @@ export class AbstractPlayer extends GameObject {
     this.frameCurrentCnt = 0
 
     this.hp = 100
-    this.$hp = this.root.$kof.find(`.kof-head-hp-${this.id}>div`)
-    this.$hp_div = this.$hp.find('div')
+    // this.$hp = this.root.$kof.find(`.kof-head-hp-${this.id}>div`)
+    // this.$hp_div = this.$hp.find('div')
   }
 
   start() {
@@ -114,8 +114,8 @@ export class AbstractPlayer extends GameObject {
     if (this.x < 0)
       this.x = 0
 
-    else if (this.x + this.width > this.root.gameMap.$canvas.width())
-      this.x = this.root.gameMap.$canvas.width() - this.width
+    else if (this.x + this.width > this.root.gameMap.$canvas.width)
+      this.x = this.root.gameMap.$canvas.width - this.width
   }
 
   updateControl() {
@@ -174,10 +174,8 @@ export class AbstractPlayer extends GameObject {
 
     const players = this.root.players
     if (players[0] && players[1]) {
-      const me = this; const you = players[1 - this.id]
-      if (me.x < you.x)
-        me.direction = 1
-      else me.direction = -1
+      const you = players[1 - this.id]
+      this.direction = [-1, 1][Number(this.x < you.x)]
     }
   }
 
@@ -191,22 +189,22 @@ export class AbstractPlayer extends GameObject {
 
   updateAttack() {
     if (this.status === 4 && this.frameCurrentCnt === 18) {
-      const me = this; const you = this.root.players[1 - this.id]
+      const you = this.root.players[1 - this.id]
       let r1
       if (this.direction > 0) {
         r1 = {
-          x1: me.x + 120,
-          y1: me.y + 40,
-          x2: me.x + 120 + 100,
-          y2: me.y + 40 + 20,
+          x1: this.x + 120,
+          y1: this.y + 40,
+          x2: this.x + 120 + 100,
+          y2: this.y + 40 + 20,
         }
       }
       else {
         r1 = {
-          x1: me.x + me.width - 120 - 100,
-          y1: me.y + 40,
-          x2: me.x + me.width - 120 - 100 + 100,
-          y2: me.y + 40 + 20,
+          x1: this.x + this.width - 120 - 100,
+          y1: this.y + 40,
+          x2: this.x + this.width - 120 - 100 + 100,
+          y2: this.y + 40 + 20,
         }
       }
       const r2 = {
@@ -229,13 +227,13 @@ export class AbstractPlayer extends GameObject {
 
     this.hp = Math.max(this.hp - 10, 0)
 
-    this.$hp_div.animate({
-      width: this.$hp.parent().width() * this.hp / 100,
-    }, 300)
+    // this.$hp_div.animate({
+    //   width: this.$hp.parent().width() * this.hp / 100,
+    // }, 300)
 
-    this.$hp.animate({
-      width: this.$hp.parent().width() * this.hp / 100,
-    }, 600)
+    // this.$hp.animate({
+    //   width: this.$hp.parent().width() * this.hp / 100,
+    // }, 600)
 
     if (this.hp <= 0) {
       this.status = 6
@@ -247,7 +245,8 @@ export class AbstractPlayer extends GameObject {
   /**
    * 两个矩形是否碰撞
    */
-  isCollision(r1, r2) {
+  isCollision(r1: { x1: number;x2: number;y1: number; y2: number },
+    r2: { x1: number;x2: number;y1: number; y2: number }) {
     if (Math.max(r1.x1, r2.x1) > Math.min(r1.x2, r2.x2))
       return false
     if (Math.max(r1.y1, r2.y1) > Math.min(r1.y2, r2.y2))
@@ -272,30 +271,29 @@ export class AbstractPlayer extends GameObject {
     if (status === 1 && this.direction * this.vx < 0)
       status = 2
 
-    const obj = this.animations.get(status)
+    const obj = this.animations.get(status)!
     if (obj?.loaded) {
       if (this.direction > 0) {
-        const k = parseInt(this.frameCurrentCnt / obj.frameRate) % obj.frameCnt
+        const k = ~~(this.frameCurrentCnt / obj.frameRate) % obj.frameCnt
         const image = obj.gif.frames[k].image
         this.ctx.drawImage(image, this.x, this.y + obj.offsetY, image.width * obj.scale, image.height * obj.scale)
       }
       else {
         this.ctx.save()
         this.ctx.scale(-1, 1)
-        this.ctx.translate(-this.root.gameMap.$canvas.width(), 0)
+        this.ctx.translate(-this.root.gameMap.$canvas.width, 0)
 
-        const k = parseInt(this.frameCurrentCnt / obj.frameRate) % obj.frameCnt
+        const k = ~~(this.frameCurrentCnt / obj.frameRate) % obj.frameCnt
         const image = obj.gif.frames[k].image
-        this.ctx.drawImage(image, this.root.gameMap.$canvas.width() - this.x - this.width, this.y + obj.offsetY, image.width * obj.scale, image.height * obj.scale)
+        this.ctx.drawImage(image, this.root.gameMap.$canvas.width - this.x - this.width, this.y + obj.offsetY, image.width * obj.scale, image.height * obj.scale)
 
         this.ctx.restore()
       }
     }
 
     if ([4, 5, 6].includes(this.status) && this.frameCurrentCnt === obj.frameRate * (obj.frameCnt - 1)) {
-      if (this.status === 6) {
+      if (this.status === 6)
         this.frameCurrentCnt--
-      }
       else
         this.status = 0
     }

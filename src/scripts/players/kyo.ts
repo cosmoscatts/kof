@@ -13,11 +13,11 @@ export class Kyo extends AbstractPlayer {
   }
 
   initAnimations() {
-    const outer = this
+    const { animations } = this
     const offsets = [0, -22, -22, -140, 0, 0, 0]
     for (let i = 0; i < 7; i++) {
-      const gif = GIF()
-      gif.load(`/static/images/player/kyo/${i}.gif`)
+      const gif = useGif()
+      gif.load(`/src/assets/images/player/kyo/${i}.gif`)
       this.animations.set(i, {
         gif,
         frameCnt: 0, // 总图片数
@@ -28,7 +28,7 @@ export class Kyo extends AbstractPlayer {
       })
 
       gif.onload = () => {
-        const obj = outer.animations.get(i)
+        const obj = animations.get(i)!
         obj.frameCnt = gif.frames.length
         obj.loaded = true
 

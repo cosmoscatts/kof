@@ -8,9 +8,8 @@ export class KOF {
   players: AbstractPlayer[]
 
   constructor(id: string) {
-    this.$kof = document.getElementById(`#${id}`)
-
-    this.gameMap = new GameMap(this)
+    this.$kof = document.getElementById(id)
+    this.gameMap = new GameMap(this, document.getElementById('kof-canvas') as HTMLCanvasElement)
 
     this.players = [
       new Kyo(
