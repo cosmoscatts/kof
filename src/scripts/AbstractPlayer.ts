@@ -80,32 +80,8 @@ export class AbstractPlayer extends GameObject {
     this.x += this.vx * this.timeDelta / 1000
     this.y += this.vy * this.timeDelta / 1000
 
-    // 如果角色重叠，取消运动
-    // let [a, b] = this.root.players
-    // if (a !== this) [a, b] = [b, a]
-    // const r1 = {
-    //   x1: a.x,
-    //   y1: a.y,
-    //   x2: a.x + a.width,
-    //   y2: a.y + a.height,
-    // }
-    // const r2 = {
-    //   x1: b.x,
-    //   y1: b.y,
-    //   x2: b.x + b.width,
-    //   y2: b.y + b.height,
-    // }
-    // if (this.isCollision(r1, r2)) {
-    //   a.x -= this.vx * this.timeDelta / 1000 / 2
-    //   a.y -= this.vy * this.timeDelta / 1000 / 2
-    //   b.x += this.vx * this.timeDelta / 1000 / 2
-    //   b.y += this.vy * this.timeDelta / 1000 / 2
-
-    //   if (this.status === 3) this.status = 0
-    // }
-
-    if (this.y > 450) {
-      this.y = 450
+    if (this.y > 250) {
+      this.y = 250
       this.vy = 0
       if (this.status === 3)
         this.status = 0
