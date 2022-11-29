@@ -30,13 +30,12 @@ const showReturnBtn = computed(() => ['/game', '/pick'].includes(route.path))
     </div>
     <div
       v-if="showReturnBtn && width >= 1180"
-      absolute right="[250px]" top-10px
       class="btn" @click="$router.push('/home')"
     >
       返回
     </div>
     <div
-      absolute right="[180px]" top-10px
+      absolute right-180px top-10px
       w60px h40px flex justify-center items-center
       border="1 solid primary" bg-primary rounded-5px
       cursor-pointer outline-none hover:shadow-nav_item
@@ -126,6 +125,9 @@ const showReturnBtn = computed(() => ['/game', '/pick'].includes(route.path))
 }
 
 .btn {
+  position: absolute;
+  top: 10px;
+  right: 250px;
   width: 60px;
   height: 40px;
   color: white;

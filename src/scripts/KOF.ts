@@ -24,7 +24,7 @@ export class KOF {
           color: 'blue',
         },
       ),
-      new Mai(
+      new Kyo(
         this,
         {
           id: 1,

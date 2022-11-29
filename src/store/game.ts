@@ -21,7 +21,7 @@ export const useGameStore = defineStore(
       playerB.value = { ...DEFAULT_PLAYER_STATS, id: idB }
     }
     function updatePlayer(stats: PlayerStats) {
-      if (!stats.id)
+      if (![0, 1].includes(stats.id))
         return
       const player = [playerA, playerB][Number(playerB.value?.id === stats.id)]
       player.value = { ...stats }
