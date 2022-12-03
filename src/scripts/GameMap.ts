@@ -34,6 +34,10 @@ export class GameMap extends GameObject {
         a.status = b.status = 6
         a.frameCurrentCnt = b.frameCurrentCnt = 0
         a.vx = b.vx = 0
+
+        const { updateHasStarted, updateResultVisible } = useGameStore()
+        updateHasStarted(false)
+        updateResultVisible(true)
       }
     }
 

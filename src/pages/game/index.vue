@@ -22,27 +22,25 @@ const restart = () => {
 </script>
 
 <template>
-  <fragment>
-    <div id="kof">
-      <canvas id="kof-canvas" width="830" height="500" tabindex="0" />
-      <div class="kof-head">
-        <div class="kof-head-hp-0">
-          <div>
-            <div />
-          </div>
+  <div id="kof">
+    <canvas id="kof-canvas" width="830" height="500" tabindex="0" />
+    <div class="kof-head">
+      <div class="kof-head-hp-0">
+        <div>
+          <div />
         </div>
-        <div class="kof-head-timer">
-          {{ gameStore.timer }}
-        </div>
-        <div class="kof-head-hp-1">
-          <div>
-            <div />
-          </div>
+      </div>
+      <div class="kof-head-timer">
+        {{ gameStore.timer }}
+      </div>
+      <div class="kof-head-hp-1">
+        <div>
+          <div />
         </div>
       </div>
     </div>
     <ResultBoard :visible="gameStore.resultVisible" @restart="restart" />
-  </fragment>
+  </div>
 </template>
 
 <style scoped lang="less">

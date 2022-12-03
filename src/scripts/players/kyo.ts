@@ -17,7 +17,7 @@ export class Kyo extends BasePlayer {
     const offsets = [0, -22, -22, -140, 0, 0, 0]
     for (let i = 0; i < 7; i++) {
       const gif = useGif()
-      gif.load(`/src/assets/images/player/kyo/${i}.gif`)
+      gif.load(`/public/images/player/kyo/${i}.gif`)
       this.animations.set(i, {
         gif,
         frameCnt: 0, // 总图片数
