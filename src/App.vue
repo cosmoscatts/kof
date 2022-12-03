@@ -99,7 +99,7 @@ const showReturnBtn = computed(() => !['/home'].includes(route.path))
   &::after {
     position: absolute;
         content: "";
-        background-image: url('/public/images/background/bg.jpg');
+        background-image: url('/images/background/bg.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
@@ -117,7 +117,7 @@ const showReturnBtn = computed(() => !['/home'].includes(route.path))
   position: relative;
   width: 830px;
   height: 500px;
-  background-image: url('/public/images/background/0.gif');
+  background-image: url('/images/background/0.gif');
   background-size: 200% 100%;
   background-position: top;
   box-sizing: border-box;
