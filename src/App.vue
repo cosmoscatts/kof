@@ -14,7 +14,7 @@ watch(height, setPosition)
 onMounted(setPosition)
 
 const route = useRoute()
-const showReturnBtn = computed(() => ['/game', '/pick'].includes(route.path))
+const showReturnBtn = computed(() => !['/home'].includes(route.path))
 </script>
 
 <template>

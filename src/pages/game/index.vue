@@ -13,27 +13,36 @@ const hpWidthStyle = computed(() => {
     `${playerB.hp}%`,
   ]
 })
+
+const restart = () => {
+  // eslint-disable-next-line no-new
+  new KOF('kof', gameStore)
+  gameStore.updateResultVisible(false)
+}
 </script>
 
 <template>
-  <div id="kof">
-    <canvas id="kof-canvas" width="830" height="500" tabindex="0" />
-    <div class="kof-head">
-      <div class="kof-head-hp-0">
-        <div>
-          <div />
+  <fragment>
+    <div id="kof">
+      <canvas id="kof-canvas" width="830" height="500" tabindex="0" />
+      <div class="kof-head">
+        <div class="kof-head-hp-0">
+          <div>
+            <div />
+          </div>
         </div>
-      </div>
-      <div class="kof-head-timer">
-        {{ gameStore.timer }}
-      </div>
-      <div class="kof-head-hp-1">
-        <div>
-          <div />
+        <div class="kof-head-timer">
+          {{ gameStore.timer }}
+        </div>
+        <div class="kof-head-hp-1">
+          <div>
+            <div />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <ResultBoard :visible="gameStore.resultVisible" @restart="restart" />
+  </fragment>
 </template>
 
 <style scoped lang="less">

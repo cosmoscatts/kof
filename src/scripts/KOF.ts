@@ -1,7 +1,7 @@
 import type { Store } from 'pinia'
 import { GameMap } from './GameMap'
 import type { BasePlayer } from './BasePlayer'
-import { Kyo, Mai } from './players/'
+import { Kyo } from './players'
 
 export class KOF {
   $kof: HTMLElement | null

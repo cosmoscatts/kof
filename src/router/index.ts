@@ -16,14 +16,6 @@ const router = createRouter({
       },
     },
     {
-      path: '/pick',
-      name: 'PickRole',
-      component: () => import('~/pages/pick-role/index.vue'),
-      meta: {
-        title: '选择角色',
-      },
-    },
-    {
       path: '/game',
       name: 'Game',
       component: () => import('~/pages/game/index.vue'),

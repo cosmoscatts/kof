@@ -199,7 +199,7 @@ export class BasePlayer extends GameObject {
 
     const attackHp = ~~(Math.random() * 20)
     this.hp = Math.max(this.hp - attackHp, 0)
-    const { updatePlayer, updateHasStarted } = useGameStore()
+    const { updatePlayer, updateHasStarted, updateResultVisible } = useGameStore()
     updatePlayer({ id: this.id, hp: this.hp })
 
     if (this.hp <= 0) {
@@ -207,6 +207,7 @@ export class BasePlayer extends GameObject {
       this.frameCurrentCnt = 0
       this.vx = 0
       updateHasStarted(false)
+      updateResultVisible(true)
     }
   }
 
