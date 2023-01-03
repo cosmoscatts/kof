@@ -79,15 +79,13 @@ export class BasePlayer extends GameObject {
     if (this.y > 250) {
       this.y = 250
       this.vy = 0
-      if (this.status === 3)
-        this.status = 0
+      if (this.status === 3) this.status = 0
     }
 
-    if (this.x < 0)
-      this.x = 0
-
-    else if (this.x + this.width > this.root.gameMap.$canvas.width)
+    if (this.x < 0) this.x = 0
+    else if (this.x + this.width > this.root.gameMap.$canvas.width) {
       this.x = this.root.gameMap.$canvas.width - this.width
+    }
   }
 
   updateControl() {
@@ -97,8 +95,7 @@ export class BasePlayer extends GameObject {
       a = this.pressedKeys.has('a')
       d = this.pressedKeys.has('d')
       space = this.pressedKeys.has(' ')
-    }
-    else {
+    } else {
       w = this.pressedKeys.has('ArrowUp')
       a = this.pressedKeys.has('ArrowLeft')
       d = this.pressedKeys.has('ArrowRight')
@@ -110,30 +107,21 @@ export class BasePlayer extends GameObject {
         this.status = 4
         this.vx = 0
         this.frameCurrentCnt = 0
-      }
-      else if (w) {
-        if (d)
-          this.vx = this.speedx
-
-        else if (a)
-          this.vx = -this.speedx
-
-        else
-          this.vx = 0
+      } else if (w) {
+        if (d) this.vx = this.speedx
+        else if (a) this.vx = -this.speedx
+        else this.vx = 0
 
         this.vy = this.speedy
         this.status = 3
         this.frameCurrentCnt = 0
-      }
-      else if (d) {
+      } else if (d) {
         this.vx = this.speedx
         this.status = 1
-      }
-      else if (a) {
+      } else if (a) {
         this.vx = -this.speedx
         this.status = 1
-      }
-      else {
+      } else {
         this.vx = 0
         this.status = 0
       }
@@ -141,8 +129,7 @@ export class BasePlayer extends GameObject {
   }
 
   updateDirection() {
-    if (this.status === 6)
-      return
+    if (this.status === 6) return
 
     const players = this.root.players
     if (players[0] && players[1]) {
@@ -170,8 +157,7 @@ export class BasePlayer extends GameObject {
           x2: this.x + 120 + 100,
           y2: this.y + 40 + 20,
         }
-      }
-      else {
+      } else {
         r1 = {
           x1: this.x + this.width - 120 - 100,
           y1: this.y + 40,
@@ -185,14 +171,12 @@ export class BasePlayer extends GameObject {
         x2: you.x + you.width,
         y2: you.y + you.height,
       }
-      if (this.isCollision(r1, r2))
-        you.isAttack()
+      if (this.isCollision(r1, r2)) you.isAttack()
     }
   }
 
   isAttack() {
-    if (this.status === 6)
-      return
+    if (this.status === 6) return
 
     this.status = 5
     this.frameCurrentCnt = 0
@@ -216,10 +200,8 @@ export class BasePlayer extends GameObject {
    */
   isCollision(r1: { x1: number; x2: number; y1: number; y2: number },
     r2: { x1: number; x2: number; y1: number; y2: number }) {
-    if (Math.max(r1.x1, r2.x1) > Math.min(r1.x2, r2.x2))
-      return false
-    if (Math.max(r1.y1, r2.y1) > Math.min(r1.y2, r2.y2))
-      return false
+    if (Math.max(r1.x1, r2.x1) > Math.min(r1.x2, r2.x2)) return false
+    if (Math.max(r1.y1, r2.y1) > Math.min(r1.y2, r2.y2)) return false
     return true
   }
 
@@ -237,8 +219,7 @@ export class BasePlayer extends GameObject {
 
     let status = this.status
 
-    if (status === 1 && this.direction * this.vx < 0)
-      status = 2
+    if (status === 1 && this.direction * this.vx < 0) status = 2
 
     const obj = this.animations.get(status)!
     if (obj?.loaded) {
@@ -246,8 +227,7 @@ export class BasePlayer extends GameObject {
         const k = ~~(this.frameCurrentCnt / obj.frameRate) % obj.frameCnt
         const image = obj.gif.frames[k].image
         this.ctx.drawImage(image, this.x, this.y + obj.offsetY, image.width * obj.scale, image.height * obj.scale)
-      }
-      else {
+      } else {
         this.ctx.save()
         this.ctx.scale(-1, 1)
         this.ctx.translate(-this.root.gameMap.$canvas.width, 0)
@@ -261,10 +241,8 @@ export class BasePlayer extends GameObject {
     }
 
     if ([4, 5, 6].includes(this.status) && this.frameCurrentCnt === obj.frameRate * (obj.frameCnt - 1)) {
-      if (this.status === 6)
-        this.frameCurrentCnt--
-      else
-        this.status = 0
+      if (this.status === 6) this.frameCurrentCnt--
+      else this.status = 0
     }
 
     this.frameCurrentCnt++

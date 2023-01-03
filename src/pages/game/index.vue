@@ -2,23 +2,20 @@
 import { KOF } from '~/scripts/KOF'
 
 const gameStore = useGameStore()
-onMounted(() => new KOF('kof', gameStore))
-
 const hpWidthStyle = computed(() => {
   const { playerA, playerB } = gameStore
-  if (!playerA || !playerB)
-    return ['100%', '100%']
+  if (!playerA || !playerB) return ['100%', '100%']
   return [
     `${playerA.hp}%`,
     `${playerB.hp}%`,
   ]
 })
-
 const restart = () => {
   // eslint-disable-next-line no-new
   new KOF('kof', gameStore)
   gameStore.updateResultVisible(false)
 }
+onMounted(() => new KOF('kof', gameStore))
 </script>
 
 <template>

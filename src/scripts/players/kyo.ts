@@ -49,10 +49,8 @@ export class Kyo extends BasePlayer {
         obj.frameCnt = gif.frames.length
         obj.loaded = true
 
-        if (i === 3)
-          obj.frameRate = 4
+        if (i === 3) obj.frameRate = 4
       }
     }
   }
 }
-

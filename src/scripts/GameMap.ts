@@ -46,8 +46,7 @@ export class GameMap extends GameObject {
 
   update() {
     const gameStore = useGameStore()
-    if (gameStore.hasStarted)
-      this.updateTime(gameStore.updateTimer)
+    if (gameStore.hasStarted) this.updateTime(gameStore.updateTimer)
     this.render()
   }
 

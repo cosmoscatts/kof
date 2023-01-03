@@ -11,11 +11,7 @@ export class Controller {
 
   start() {
     const { pressedKeys } = this
-    this.$canvas.addEventListener('keydown', (e) => {
-      pressedKeys.add(e.key)
-    })
-    this.$canvas.addEventListener('keyup', (e) => {
-      pressedKeys.delete(e.key)
-    })
+    this.$canvas.addEventListener('keydown', e => pressedKeys.add(e.key))
+    this.$canvas.addEventListener('keyup', e => pressedKeys.delete(e.key))
   }
 }
