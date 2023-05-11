@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const router = useRouter()
-const onClick = () => router.push('/game')
+function onClick() {
+  return router.push('/game')
+}
 </script>
 
 <template>
